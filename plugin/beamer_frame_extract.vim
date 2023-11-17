@@ -6,7 +6,7 @@
 " Name Of File: beamer_frame_extract.vim
 "  Description: Extract the beamer frame under the cursor
 "   Maintainer: Franck Pommereau <franck.pommereau@univ-evry.fr>
-"      Version: 0.0.1
+"      Version: 0.0.2
 "        Usage: Use :help  for information on how to configure and use
 "               this script, or visit the Github page
 "               <https://github.com/fpom/beamer-frame-extract.vim>

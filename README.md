@@ -25,6 +25,11 @@ The plugin does not take care of compilation, it just extract and save the relev
 
 The plugin requires `python3` to be available in `vim`.
 
+## Changelog
+
+ * 0.0.2 (2023/11/17): don't save `spam-frame.tex` if documentclass is not `beamer`
+ * 0.0.1 (2023/11/17): initial version
+
 ## Licence
 
 `beamer-frame-extract` is (C) 2023 Franck Pommereau <franck.pommereau@univ-evry.fr> and released under the terms of MIT licence, see file `LICENCE` for details.

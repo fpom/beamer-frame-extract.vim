@@ -4,6 +4,7 @@ import vim
 from pathlib import Path
 
 
+_document_class = re.compile(r"^\s*\\documentclass(\[.*?\])?\{(.*?)\}")
 _begin_document = re.compile(r"^\s*\\begin\{document\}")
 _end_document = re.compile(r"^\s*\\end\{document\}")
 _begin_frame = re.compile(r"^\s*\\begin\{frame\}")
@@ -24,6 +25,8 @@ class Extract:
         texpath = Path(vim.eval("expand('%:p')"))
         lineno = int(vim.eval("line('.')"))
         preamble, frame = self.split(texpath, lineno)
+        if preamble is None or frame is None:
+            return
         outfile = texpath.with_stem(texpath.stem + "-frame")
         outfile.write_text(preamble
                            + frame
@@ -34,6 +37,9 @@ class Extract:
         source = tuple(path.open())
         preamble, stop = [], 0
         for lno, line in enumerate(source):
+            if match := _document_class.match(line):
+                if not match.group(2) == "beamer":
+                    return None, None
             preamble.append(line)
             if _begin_document.match(line):
                 stop = lno + 1
